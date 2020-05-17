@@ -1,0 +1,23 @@
+.task {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .task-name {
+    width: 50%;
+  }
+  .task-time {
+    width: 10%;
+  }
+  .task-status {
+    width: 10%;
+  }
+  .task-actions {
+    width: 30%;
+    justify-content: space-between;
+    .task-buttons {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

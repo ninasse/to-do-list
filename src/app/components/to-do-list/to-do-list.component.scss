@@ -1,0 +1,19 @@
+.task-head {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  .task-head-name {
+    margin-inline-start: -5;
+    width: 50%;
+  }
+  .task-head-time {
+    width: 10%;
+  }
+  .task-head-status {
+    width: 10%;
+  }
+  .task-head-actions {
+    width: 30%;
+  }
+}

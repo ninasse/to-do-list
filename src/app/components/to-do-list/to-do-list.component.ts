@@ -15,5 +15,17 @@ export class ToDoListComponent implements OnInit {
     { todo: 'lunch with someone', time: '12:00', done: false },
   ];
 
+  removeDeletedTask(deletedTask: Task) {
+    deletedTask
+      ? this.todolist.splice(
+          this.todolist.findIndex(function (i) {
+            return i.todo === deletedTask.todo;
+          }),
+          1
+        )
+      : console.log('nothing to delete');
+
+    console.log(`${deletedTask.todo} has been removed!`);
+  }
   ngOnInit(): void {}
 }

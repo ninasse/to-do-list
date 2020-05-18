@@ -10,14 +10,15 @@
     <button *ngIf="!task.done" class="task-buttons" (click)="addToDone(task)">
       Done!
     </button>
-    <button class="task-buttons" (click)="showDeleteDialogue()">
+    <button type="button" class="task-buttons" (click)="showDeleteDialogue()">
       Delete
     </button>
-    <button class="task-buttons">Reschedule</button>
+    <button type="button" class="task-buttons">Reschedule</button>
   </div>
 </div>
 <div [hidden]="!displayed" class="delete-dialogue">
   <span class="close" (click)="hideDeleteDialogue()">&times;</span>
   <h3>Do you want to delete {{ task.todo }}?</h3>
-  <button>Yes</button> <button>No</button>
+  <button type="button" (click)="deleteTask()">Yes</button>
+  <button type="button" (click)="hideDeleteDialogue()">No</button>
 </div>

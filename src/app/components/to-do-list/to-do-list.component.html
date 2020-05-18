@@ -14,5 +14,5 @@
 </div>
 
 <div *ngFor="let t of todolist" class="tasks-container">
-  <app-task [task]="t"></app-task>
+  <app-task [task]="t" (deleted)="removeDeletedTask($event)"></app-task>
 </div>

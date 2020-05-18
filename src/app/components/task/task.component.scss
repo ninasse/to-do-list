@@ -1,23 +1,64 @@
+button {
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  margin: 0.3rem;
+  &:hover {
+    background-color: black;
+    color: whitesmoke;
+  }
+}
 .task {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 0.5rem;
+  margin-left: 0rem;
   .task-name {
     width: 50%;
+    #task-todo {
+      display: inline;
+    }
+    #task-checkmark {
+      display: inline;
+      color: green;
+      font-size: 1.5rem;
+    }
   }
   .task-time {
-    width: 10%;
-  }
-  .task-status {
-    width: 10%;
+    width: 20%;
   }
   .task-actions {
     width: 30%;
     justify-content: space-between;
+
     .task-buttons {
       display: flex;
       flex-direction: column;
     }
+  }
+}
+.delete-dialogue {
+  width: 45%;
+  position: fixed;
+  border: 2px solid black;
+  border-radius: 1rem;
+  background-color: rgb(243, 221, 243);
+  z-index: 1;
+  padding: 1.5rem;
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
   }
 }

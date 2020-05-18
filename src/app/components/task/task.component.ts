@@ -10,5 +10,16 @@ export class TaskComponent implements OnInit {
   constructor() {}
   @Input() task: Task;
 
+  displayed: boolean = false;
+  addToDone(task: Task) {
+    task.done = true;
+  }
+
+  showDeleteDialogue() {
+    this.displayed = !this.displayed;
+  }
+  hideDeleteDialogue() {
+    this.displayed = false;
+  }
   ngOnInit(): void {}
 }

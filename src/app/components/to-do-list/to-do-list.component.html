@@ -1,3 +1,23 @@
+<div class="main-container">
+  <form action="">
+    <input
+      type="text"
+      #newTask
+      (blur)="(newTask.value)"
+      placeholder="New task"
+    />
+    <input type="time" #newTaskTime (blur)="(newTaskTime.value)" />
+    <button
+      type="button"
+      (click)="addNewTask(newTask.value, newTaskTime.value)"
+      (click)="newTask.value = ''"
+      (click)="newTaskTime.value = ''"
+    >
+      Add new task
+    </button>
+  </form>
+</div>
+
 <div *ngIf="todolist.length >= 1; else emptySchedule">
   <h1>List of things to do today!</h1>
   <div class="task-head">
@@ -13,6 +33,6 @@
   </ng-template>
 </div>
 
-<div *ngFor="let t of todolist" class="tasks-container">
+<div *ngFor="let t of orderedList" class="tasks-container">
   <app-task [task]="t" (deleted)="removeDeletedTask($event)"></app-task>
 </div>

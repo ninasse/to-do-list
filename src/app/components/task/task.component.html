@@ -19,6 +19,16 @@
 <div [hidden]="!displayed" class="delete-dialogue">
   <span class="close" (click)="hideDeleteDialogue()">&times;</span>
   <h3>Do you want to delete {{ task.todo }}?</h3>
-  <button type="button" (click)="deleteTask()">Yes</button>
-  <button type="button" (click)="hideDeleteDialogue()">No</button>
+  <div class="dialogue-buttons">
+    <button type="button" class="dialogue-buttons" (click)="deleteTask()">
+      Yes
+    </button>
+    <button
+      type="button"
+      class="dialogue-buttons"
+      (click)="hideDeleteDialogue()"
+    >
+      No
+    </button>
+  </div>
 </div>

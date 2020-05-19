@@ -10,10 +10,27 @@ export class ToDoListComponent implements OnInit {
   constructor() {}
   todolist: Task[] = [
     { todo: 'run', time: '06:30', done: false },
-    { todo: 'breakfastmeeting', time: '09:00', done: false },
     { todo: 'angular session', time: '10:30', done: false },
+    { todo: 'breakfastmeeting', time: '09:00', done: false },
     { todo: 'lunch with someone', time: '12:00', done: false },
   ];
+  orderedList: Task[];
+
+  orderByTime() {
+    this.orderedList = this.todolist.sort((a, b) =>
+      a.time.localeCompare(b.time)
+    );
+    console.log(this.orderedList);
+  }
+  addNewTask(newTask: string, newTaskTime: string) {
+    let newAddedTask: Task = new Task();
+    newAddedTask.todo = newTask;
+    newAddedTask.time = newTaskTime;
+    newAddedTask.done = false;
+
+    this.todolist.push(newAddedTask);
+    this.orderByTime();
+  }
 
   removeDeletedTask(deletedTask: Task) {
     deletedTask
@@ -27,5 +44,7 @@ export class ToDoListComponent implements OnInit {
 
     console.log(`${deletedTask.todo} has been removed!`);
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.orderByTime();
+  }
 }

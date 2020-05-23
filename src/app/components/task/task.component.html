@@ -1,22 +1,24 @@
 <div class="task">
+  <div class="task-time">
+    <p>{{ task.time }}</p>
+  </div>
   <div class="task-name">
     <h3 id="task-todo">{{ task.todo }}</h3>
     <h3 *ngIf="task.done" id="task-checkmark">&#10003;</h3>
-  </div>
-  <div class="task-time">
-    <p>{{ task.time }}</p>
   </div>
   <div class="task-actions">
     <button *ngIf="!task.done" class="task-buttons" (click)="addToDone(task)">
       Done!
     </button>
-    <button type="button" class="task-buttons" (click)="showDeleteDialogue()">
+    <button type="button" class="task-buttons" (click)="toggleDeleteDialogue()">
       Delete
     </button>
-    <button type="button" class="task-buttons">Reschedule</button>
+    <button type="button" class="task-buttons" (click)="toggleUpdateDialogue()">
+      Reschedule
+    </button>
   </div>
 </div>
-<div [hidden]="!displayed" class="delete-dialogue">
+<div [hidden]="!displayed" class="task-dialogue">
   <span class="close" (click)="hideDeleteDialogue()">&times;</span>
   <h3>Do you want to delete {{ task.todo }}?</h3>
   <div class="dialogue-buttons">
@@ -29,6 +31,21 @@
       (click)="hideDeleteDialogue()"
     >
       No
+    </button>
+  </div>
+</div>
+<div *ngIf="displayedUpdate" class="task-dialogue">
+  <span class="close" (click)="hideUpdateDialogue()">&times;</span>
+  <h3>Update {{ task.todo }}?</h3>
+  <p>Set new time!</p>
+  <input type="time" #taskTime (blur)="(taskTime.value)" />
+  <div class="dialogue-buttons">
+    <button
+      type="button"
+      class="dialogue-buttons"
+      (click)="updateTask(taskTime.value)"
+    >
+      Update!
     </button>
   </div>
 </div>

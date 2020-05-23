@@ -4,17 +4,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(
     45deg,
-    #f5b29e,
-    #fcaac9,
-    #edb6f8,
-    #94dffa,
-    #bffced
+    rgb(153, 193, 245),
+    rgb(153, 154, 245),
+    rgb(182, 152, 252),
+    rgb(226, 139, 131),
+    rgb(243, 135, 129),
+    rgb(248, 179, 136),
+    rgb(248, 248, 142),
+    rgb(184, 248, 190),
+    rgb(140, 222, 245),
+    rgb(154, 213, 247)
   );
+  height: 100%;
+  width: 100%;
   background-size: 10000% 100%;
-  animation: gradient 15s linear infinite;
-  animation-direction: alternate;
+  animation: gradient 20s linear infinite;
 }
-
 @keyframes gradient {
   0% {
     background-position: 0%;

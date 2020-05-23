@@ -8,9 +8,8 @@ describe('ToDoListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToDoListComponent ]
-    })
-    .compileComponents();
+      declarations: [ToDoListComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +20,13 @@ describe('ToDoListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should add a new task to the todolist', () => {
+    expect(component.todolist.length).toEqual(component.todolist.length);
+
+    component.addNewTask(component.newTask, component.newTaskTime);
+
+    expect(component.todolist.length).toEqual(component.todolist.length++);
   });
 });

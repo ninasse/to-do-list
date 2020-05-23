@@ -23,6 +23,8 @@ describe('ToDoListComponent', () => {
   });
 
   it('should add a new task to the todolist', () => {
+    component.newTask = 'Read';
+    component.newTaskTime = '20:00';
     expect(component.todolist.length).toEqual(component.todolist.length);
 
     component.addNewTask(component.newTask, component.newTaskTime);

@@ -9,8 +9,8 @@ import { TaskComponent } from '../task/task.component';
 })
 export class ToDoListComponent implements OnInit {
   // MOCK DATA FOR TESTS
-  newTask: string = 'Read';
-  newTaskTime: string = '20:00';
+  newTask: string;
+  newTaskTime: string;
 
   constructor() {}
   todolist: Task[] = [
@@ -22,10 +22,9 @@ export class ToDoListComponent implements OnInit {
 
   orderedList: Task[];
   orderByTime() {
-    this.orderedList = this.todolist.sort((a, b) =>
-      a.time.localeCompare(b.time)
-    );
+    this.orderedList.sort((a, b) => a.time.localeCompare(b.time));
     console.log(this.orderedList);
+    return localStorage.setItem('tasks', JSON.stringify(this.orderedList));
   }
   addNewTask(newTask: string, newTaskTime: string) {
     let newAddedTask: Task = new Task();
@@ -33,39 +32,41 @@ export class ToDoListComponent implements OnInit {
     newAddedTask.time = newTaskTime;
     newAddedTask.done = false;
 
-    this.todolist.push(newAddedTask);
+    this.orderedList.push(newAddedTask);
     this.orderByTime();
-    localStorage.setItem('tasks', JSON.stringify(this.orderedList));
   }
   setToDone(finishedTask: Task) {
-    let index = this.todolist.findIndex((i) => i.todo === finishedTask.todo);
-    this.todolist[index].done = true;
+    let index = this.orderedList.findIndex((i) => i.todo === finishedTask.todo);
+    this.orderedList[index].done = true;
     this.orderByTime();
-    localStorage.setItem('tasks', JSON.stringify(this.orderedList));
   }
   removeDeletedTask(deletedTask: Task) {
     deletedTask
-      ? this.todolist.splice(
-          this.todolist.findIndex(function (i) {
+      ? this.orderedList.splice(
+          this.orderedList.findIndex(function (i) {
             return i.todo === deletedTask.todo;
           }),
           1
         )
       : console.log('nothing to delete');
-    this.orderByTime();
-    localStorage.setItem('tasks', JSON.stringify(this.orderedList));
     console.log(`${deletedTask.todo} has been removed!`);
+    this.orderByTime();
   }
   setNewTime(updatedTask: Task) {
-    let index = this.todolist.findIndex((i) => i.todo === updatedTask.todo);
-    this.todolist[index].time = updatedTask.time;
-    console.log('Update to' + updatedTask.time);
+    let index = this.orderedList.findIndex((i) => i.todo === updatedTask.todo);
+    this.orderedList[index].time = updatedTask.time;
+    console.log('Update time to ' + updatedTask.time);
     this.orderByTime();
-    localStorage.setItem('tasks', JSON.stringify(this.orderedList));
   }
+
   ngOnInit(): void {
-    localStorage.setItem('tasks', JSON.stringify(this.todolist));
-    this.orderedList = JSON.parse(localStorage.getItem('tasks'));
+    if (localStorage.getItem('tasks') === null || undefined) {
+      localStorage.setItem('tasks', JSON.stringify(this.todolist));
+      this.orderedList = JSON.parse(localStorage.getItem('tasks'));
+    } else {
+      this.orderedList = JSON.parse(localStorage.getItem('tasks'));
+      localStorage.setItem('tasks', JSON.stringify(this.orderedList));
+    }
     ViewChild(TaskComponent);
   }
 }

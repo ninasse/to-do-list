@@ -1,25 +1,33 @@
 <div class="main-container">
-  <form action="">
+  <form action="" name="addNewTaskForm">
     <input
       type="text"
+      name="newTaskInput"
       #newTask
       (blur)="(newTask.value)"
       placeholder="New task"
       required
     />
-    <input type="time" #newTaskTime (blur)="(newTaskTime.value)" required />
+    <input
+      type="time"
+      namme="newTimeInput"
+      #newTaskTime
+      (blur)="(newTaskTime.value)"
+      required
+    />
     <button
-      type="button"
       (click)="addNewTask(newTask.value, newTaskTime.value)"
       (click)="newTask.value = ''"
       (click)="newTaskTime.value = ''"
+      (keyup.enter)="newTask.value = ''"
+      (keyup.enter)="newTaskTime.value = ''"
     >
       Add new task
     </button>
   </form>
 </div>
 
-<div *ngIf="todolist.length >= 1; else emptySchedule">
+<div *ngIf="orderedList.length >= 1; else emptySchedule">
   <h1>List of things to do today!</h1>
   <div class="task-head">
     <div class="task-head-time"><h2>Time</h2></div>
